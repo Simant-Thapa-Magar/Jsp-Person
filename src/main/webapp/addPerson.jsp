@@ -7,19 +7,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
-<form action="${pageContext.request.contextPath}/addServlet?action=ADD" method="post">
+<form action="${pageContext.request.contextPath}/addServlet?action=ADD" method="post" id="PersonJS">
 <table class="table thead-light form-group">
     <tr>
         <td>Id </td>
-        <td><input type="text" name="id"></td>
+        <td><input type="text" name="id"/></td>
     </tr>
     <tr>
         <td>First Name </td>
-        <td><input type="text" name="fname"></td>
+        <td><input type="text" name="fname"/></td>
     </tr>
     <tr>
     <td>Last Name </td>
-    <td><input type="text" name="lname"></td>
+    <td><input type="text" name="lname"/></td>
     </tr>
     <tr>
    <td> <input type="submit" value="Add Person" class="btn btn-primary">
@@ -27,7 +27,7 @@
 </table>
 </form>
 <script>
-    $('#addPerson.jsp').validate({
+    $('#PersonJS').validate({
         rules: {
             fname:{
                 required: true
