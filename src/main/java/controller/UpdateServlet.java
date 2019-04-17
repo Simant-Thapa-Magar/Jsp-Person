@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-@WebServlet(name="UpdateServlet",urlPatterns = "/updateServlet")
+//@WebServlet(name="UpdateServlet",urlPatterns = "/updateServlet")
 public class UpdateServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

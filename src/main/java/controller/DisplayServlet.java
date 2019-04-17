@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="DisplayServlet",urlPatterns = "/displayAll")
+//@WebServlet(name="DisplayServlet",urlPatterns = "/displayAll")
 public class DisplayServlet extends HttpServlet {
         public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
                  Dao<Person> dao = new DaoImpl();

@@ -26,7 +26,7 @@
     </div>
 </c:if>
 </div>
-<table width="100%" border="1px">
+<table width="100%" border="1px" class="table table-light">
 <tr bgcolor="#a9a9a9">
     <td>Id</td>
     <td>First Name</td>
@@ -38,8 +38,8 @@
             <td>${p.id}</td>
             <td>${p.fname}</td>
             <td>${p.lname}</td>
-            <td> <a href="${pageContext.request.contextPath}/updateServlet?id=${p.id}" class="btn btn-warning">Update</a>
-                <a href="${pageContext.request.contextPath}/delServlet?id=${p.id}" class="btn btn-danger">Delete</a>
+            <td> <a href="${pageContext.request.contextPath}/updateServlet?id=${p.id}&action=UPDATE" class="btn btn-warning">Update</a>
+                <a href="${pageContext.request.contextPath}/delServlet?id=${p.id}&action=DELETE" class="btn btn-danger">Delete</a>
             </td>
         </tr>
     </c:forEach>

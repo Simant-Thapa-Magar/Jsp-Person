@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="DeletePerson",urlPatterns = "/delServlet")
+//@WebServlet(name="DeletePerson",urlPatterns = "/delServlet")
 public class DeletePerson extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Dao<Person> personDao=new DaoImpl();

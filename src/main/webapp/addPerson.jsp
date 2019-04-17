@@ -11,7 +11,7 @@
     <title>Add Person</title>
 </head>
 <body>
-<form action="addServlet">
+<form action="${pageContext.request.contextPath}/addServlet&action=ADD">
 <table>
     <tr>
         <td>Id </td>
