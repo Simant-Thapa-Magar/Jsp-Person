@@ -6,13 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Update Data</title>
-</head>
-<body>
-<form action="${pageContext.request.contextPath}/updateServlet" method="post">
-<table>
+<jsp:include page="header.jsp"/>
+<form action="${pageContext.request.contextPath}/updateServlet?action=UPDATE" method="post">
+<table class="table thead-light form-group">
     <tr>
         <td>ID</td>
         <td><input type="text" name="id" value="${person.id}" readonly/></td>
@@ -26,7 +22,6 @@
         <td><input type="text" name="lname" value="${person.lname}"/></td>
     </tr>
 </table>
-    <input type="submit" value="Update"/>
+    <input type="submit" value="Update" class="btn btn-primary"/>
 </form>
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

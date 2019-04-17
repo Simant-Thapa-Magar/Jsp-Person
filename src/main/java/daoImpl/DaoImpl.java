@@ -20,6 +20,9 @@ public class DaoImpl implements Dao<Person> {
         PreparedStatement preparedStatement=dbConnection.getPreparedStatement(query);
         try {
             ResultSet resultSet=preparedStatement.executeQuery();
+            if(personList.isEmpty()!=true){
+                personList.removeAll(personList);
+            }
             while(resultSet.next()){
                 personList.add(new Person(resultSet.getInt("id"),resultSet.getString("fname"),resultSet.getString("lname")));
             }

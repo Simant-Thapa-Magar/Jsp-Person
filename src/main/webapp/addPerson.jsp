@@ -6,13 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Add Person</title>
-</head>
-<body>
-<form action="${pageContext.request.contextPath}/addServlet&action=ADD">
-<table>
+<jsp:include page="header.jsp"/>
+<form action="${pageContext.request.contextPath}/addServlet?action=ADD" method="post">
+<table class="table thead-light form-group">
     <tr>
         <td>Id </td>
         <td><input type="text" name="id"></td>
@@ -25,8 +21,32 @@
     <td>Last Name </td>
     <td><input type="text" name="lname"></td>
     </tr>
+    <tr>
+   <td> <input type="submit" value="Add Person" class="btn btn-primary">
+   </td></tr>
 </table>
-    <input type="submit" value="Submit">
 </form>
-</body>
-</html>
+<script>
+    $('#addPerson.jsp').validate({
+        rules: {
+            fname:{
+                required: true
+            },
+            lname: {
+                required: true
+            },
+            id:{
+                required: true,
+                number: true,
+                minlength: 1,
+                maxlength: 3
+            }
+        },
+        messages:{
+            fname: "Please enter first name",
+            lname: "Please enter last name",
+            id: "Please enter valid age"
+        }
+    })
+</script>
+<jsp:include page="footer.jsp"/>

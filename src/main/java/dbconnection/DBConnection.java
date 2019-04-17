@@ -12,7 +12,6 @@ public class DBConnection {
         try {
             Class.forName(Driver);
             connection= DriverManager.getConnection(PATH,USER,PASSWORD);
-            System.out.println("Connection established");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -21,7 +20,6 @@ public class DBConnection {
     }
     public PreparedStatement getPreparedStatement(String query){
         try {
-            System.out.println("Prepared Statement");
             PreparedStatement preparedStatement=connection.prepareStatement(query);
             return preparedStatement;
         } catch (SQLException e) {

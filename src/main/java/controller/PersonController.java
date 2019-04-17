@@ -11,59 +11,75 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name="person", urlPatterns = {"/","/updateServlet","/addServlet","/delServlet"})
+@WebServlet(name="PersonController", urlPatterns = {"/","/updateServlet","/addServlet","/delServlet"})
 public class PersonController extends HttpServlet {
     Dao<Person> dao = new DaoImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action=req.getParameter("action");
-        if(action!=null && action.equals("DELETE")){
-            System.out.println("inside delete");
-            boolean isSaved=dao.delete(Integer.parseInt(req.getParameter("id")));
-            if(isSaved){
-                req.setAttribute("isSaved",true);
+        System.out.println("get action: "+action);
+        if(action!=null) {
+            if (action.equals("DELETE")) {
+                System.out.println("inside get delete");
+                boolean isSaved = dao.delete(Integer.parseInt(req.getParameter("id")));
+                if (isSaved) {
+                    req.setAttribute("isSaved", true);
+                    req.setAttribute("message","Data Deleted !!!");
+                }
+                req.setAttribute("personList", dao.findAll());
+                req.getRequestDispatcher("displayAll.jsp").forward(req,resp);
+            } else if (action.equals("UPDATE")) {
+                System.out.println("inside get update");
+                Person person = dao.findById(Integer.parseInt(req.getParameter("id")));
+                req.setAttribute("title","Update Page");
+                req.setAttribute("person", person);
+                req.getRequestDispatcher("updatePerson.jsp").forward(req, resp);
+            } else if (action.equals("ADD")) {
+                System.out.println("inside get add");
+                req.setAttribute("title","Add Page");
+                req.getRequestDispatcher("addPerson.jsp").forward(req, resp);
             }
-            List<Person> personList=dao.findAll();
-            req.setAttribute("personList",personList);
         }
-        else if(action!=null && action.equals("UPDATE")){
-            System.out.println("inside update");
-            Person person=dao.findById(Integer.parseInt(req.getParameter("id")));
-            req.setAttribute("person",person);
-            req.getRequestDispatcher("updatePerson.jsp").forward(req,resp);
-        }
-        else if(action!=null && action.equals("ADD")){
-            System.out.println("inside add");
-            int id=Integer.parseInt(req.getParameter("id"));
-            String fname=req.getParameter("fname");
-            String lname=req.getParameter("lname");
-            boolean isSaved=dao.add(new Person(id,fname,lname));
-            if(isSaved){
-                req.setAttribute("isSaved",true);
-            }
-            List<Person> pList=dao.findAll();
-            req.setAttribute("personList",pList);
-        }
-        else {
-            List<Person> personList = dao.findAll();
-            req.setAttribute("personList", personList);
-            System.out.println("no action found");
+        else{
+            req.setAttribute("title","List Page");
+            req.setAttribute("personList",dao.findAll());
+            RequestDispatcher rd=req.getRequestDispatcher("displayAll.jsp");
+            rd.forward(req,resp);
         }
         System.out.println("person controller");
-        RequestDispatcher rd=req.getRequestDispatcher("displayAll.jsp");
-        rd.forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action=req.getParameter("action");
-        Person person=new Person(Integer.parseInt(req.getParameter("id")),req.getParameter("fname"),req.getParameter("lname"));
-        boolean isSaved=dao.update(person);
-        if(isSaved){
-            req.setAttribute("isSaved",true);
-        }
-        req.setAttribute("personList",dao.findAll());
+        System.out.println("post action: "+action);
+       if(action!=null) {
+           if (action.equals("UPDATE")) {
+               System.out.println("inside post update");
+               Person person = new Person(Integer.parseInt(req.getParameter("id")), req.getParameter("fname"), req.getParameter("lname"));
+               boolean isSaved = dao.update(person);
+               if (isSaved) {
+                   req.setAttribute("isSaved", true);
+                   req.setAttribute("message","Data Updated !!!");
+               }
+               req.setAttribute("personList", dao.findAll());
+               req.getRequestDispatcher("displayAll.jsp").forward(req, resp);
+           }
+           if (action.equals("ADD")) {
+               System.out.println("inside post add");
+               int id = Integer.parseInt(req.getParameter("id"));
+               String fname = req.getParameter("fname");
+               String lname = req.getParameter("lname");
+               boolean isSaved = dao.add(new Person(id, fname, lname));
+               if (isSaved) {
+                   req.setAttribute("isSaved", true);
+                   req.setAttribute("message","New Data Added !!!");
+               }
+               req.setAttribute("title","Person List");
+               req.setAttribute("personList",dao.findAll());
+               req.getRequestDispatcher("displayAll.jsp").forward(req, resp);
+           }
+       }
     }
 }
