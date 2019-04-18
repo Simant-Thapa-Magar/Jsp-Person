@@ -40,6 +40,10 @@ public class PersonController extends HttpServlet {
                 req.setAttribute("title","Add Page");
                 req.getRequestDispatcher("addPerson.jsp").forward(req, resp);
             }
+            else{
+                req.setAttribute("personList",dao.findAll());
+                req.getRequestDispatcher("displayAll.jsp").forward(req,resp);
+            }
         }
         else{
             req.setAttribute("title","List Page");
@@ -66,7 +70,7 @@ public class PersonController extends HttpServlet {
                req.setAttribute("personList", dao.findAll());
                req.getRequestDispatcher("displayAll.jsp").forward(req, resp);
            }
-           if (action.equals("ADD")) {
+          else if (action.equals("ADD")) {
                System.out.println("inside post add");
                int id = Integer.parseInt(req.getParameter("id"));
                String fname = req.getParameter("fname");
@@ -80,6 +84,16 @@ public class PersonController extends HttpServlet {
                req.setAttribute("personList",dao.findAll());
                req.getRequestDispatcher("displayAll.jsp").forward(req, resp);
            }
+           else{
+               req.setAttribute("personList",dao.findAll());
+               req.getRequestDispatcher("displayAll.jsp").forward(req,resp);
+           }
+       }
+       else{
+           System.out.println("null so else");
+           req.setAttribute("title","Person List");
+           req.setAttribute("personList",dao.findAll());
+           req.getRequestDispatcher("displayAll.jsp").forward(req,resp);
        }
     }
 }
