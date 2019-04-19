@@ -67,6 +67,7 @@ public class PersonController extends HttpServlet {
                    req.setAttribute("isSaved", true);
                    req.setAttribute("message","Data Updated !!!");
                }
+               req.setAttribute("title","Person List");
                req.setAttribute("personList", dao.findAll());
                req.getRequestDispatcher("displayAll.jsp").forward(req, resp);
            }
@@ -85,6 +86,7 @@ public class PersonController extends HttpServlet {
                req.getRequestDispatcher("displayAll.jsp").forward(req, resp);
            }
            else{
+               req.setAttribute("title","Person List");
                req.setAttribute("personList",dao.findAll());
                req.getRequestDispatcher("displayAll.jsp").forward(req,resp);
            }

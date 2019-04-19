@@ -16,6 +16,12 @@
         Registered !! Please enter your credentials to proceed...
     </div>
 </c:if>
+<c:if test="${isError}">
+    <br>
+    <div class="alert alert-danger">
+        <strong>!!! ${error} !!!</strong>
+    </div>
+</c:if>
 <form action="userController?action=login" method="post" id="login">
     <table class="table table-light">
         <input type="hidden" name="action" value="login"/>

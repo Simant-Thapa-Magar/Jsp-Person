@@ -8,16 +8,25 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
+<div style="text-align: right">
+    <br>
 <a href="${pageContext.request.contextPath}/addServlet?action=ADD" class="btn btn-success">Add new data</a>
-<c:if test="${isTrue}">
-    <div class="alert alert-success">
+<a href="${pageContext.request.contextPath}/login.jsp" class="btn btn-danger">Log Out</a>
+<br>
+</div>
+    <c:if test="${isTrue}">
+    <br>
+        <div class="alert alert-success">
         <strong>Welcome!!!</strong>
-    </div>
+    <br>
+        </div>
 </c:if>
     <c:if test="${isSaved}">
-    <div class="alert alert-success">
+    <br>
+        <div class="alert alert-success">
         <strong>Success!!</strong> ${message}
-    </div>
+    <br>
+        </div>
 </c:if>
 <table width="100%" border="1px" align="center" class="table table-light">
 <tr bgcolor="#a9a9a9">

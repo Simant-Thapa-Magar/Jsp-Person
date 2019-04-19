@@ -22,11 +22,14 @@ public class UserController extends HttpServlet {
             System.out.println("Inside verify login do post");
             if (login == true) {
                 System.out.println("Login Successful");
+                req.setAttribute("title","Person List");
                 req.setAttribute("isTrue", true);
                 req.getRequestDispatcher("/").forward(req, resp);
             } else {
                 System.out.println("Access denied");
-                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+                req.setAttribute("isError","true");
+                req.setAttribute("error","Invalid username password!!");
+                req.getRequestDispatcher("login.jsp").forward(req,resp);
             }
         }
         else if(action.equals("signup")){
