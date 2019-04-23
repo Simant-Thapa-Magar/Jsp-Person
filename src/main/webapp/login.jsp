@@ -11,6 +11,12 @@
 <div style="text-align:center">
     <Strong> Login Here!</Strong>
 </div>
+<br>
+<c:if test="${notLoggedIn}">
+    <div class="alert alert-danger">
+        ${notLoggedInMessage}
+    </div>
+</c:if>
 <c:if test="${isTrue}">
     <div class="alert alert-success">
         Registered !! Please enter your credentials to proceed...
